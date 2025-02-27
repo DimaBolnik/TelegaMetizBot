@@ -60,16 +60,6 @@ public class UpdateProcessor {
         setView(sendMessage);
     }
 
-    private void setFileIsReceivedView(Update update) {
-        SendMessage sendMessage = messageUtils.generateSendMessageWithText(update,
-                "Файл получен! Обрабатывается...");
-        setView(sendMessage);
-    }
-
-    public void setView(SendMessage sendMessage) {
-        telegramBot.sendAnswerMessage(sendMessage);
-    }
-
 
     private void processPhotoMessage(Update update) {
         updateProducer.produce(rabbitConfiguration.getPhotoMessageUpdateQueue(), update);
@@ -79,6 +69,16 @@ public class UpdateProcessor {
     private void processDocMessage(Update update) {
         updateProducer.produce(rabbitConfiguration.getDocMessageUpdateQueue(), update);
         setFileIsReceivedView(update);
+    }
+
+    private void setFileIsReceivedView(Update update) {
+        SendMessage sendMessage = messageUtils.generateSendMessageWithText(update,
+                "Файл получен! Обрабатывается...");
+        setView(sendMessage);
+    }
+
+    public void setView(SendMessage sendMessage) {
+        telegramBot.sendAnswerMessage(sendMessage);
     }
 
     private void processTextMessage(Update update) {

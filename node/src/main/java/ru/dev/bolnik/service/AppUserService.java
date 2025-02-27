@@ -1,0 +1,11 @@
+package ru.dev.bolnik.service;
+
+
+import ru.dev.bolnik.entity.AppUser;
+
+public interface AppUserService {
+
+    String registerUser(AppUser appUser);
+
+    String setEmail(AppUser appUser, String email);
+}
