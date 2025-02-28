@@ -13,7 +13,7 @@ public class RestServiceConfiguration {
 
     @Bean
     public Hashids getHashids() {
-        var minHashLength = 10;
+        int minHashLength = 10;
         return new Hashids(salt, minHashLength);
     }
 }

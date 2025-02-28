@@ -39,8 +39,8 @@ public class FileServiceImpl implements FileService {
     @Value("${service.file_storage.uri}")
     private String fileStorageUri;
 
-//    @Value("${link.address}")
-//    private String linkAddress;
+    @Value("${link.address}")
+    private String linkAddress;
 
 
     private final Hashids hashids;
@@ -151,7 +151,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public String generateLink(Long docId, LinkType linkType) {
         String hash = hashids.encode(docId);
-//        return  linkAddress + "/" + linkType + "?id=" + hash;
-        return "http://" + "127.0.0.1:8086" + "/" + linkType + "?id=" + hash;
+        return  linkAddress + "/" + linkType + "?id=" + hash;
+//        return "http://" + "127.0.0.1:8086" + "/" + linkType + "?id=" + hash;
     }
 }
