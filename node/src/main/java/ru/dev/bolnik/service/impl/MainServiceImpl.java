@@ -64,7 +64,7 @@ public class MainServiceImpl implements MainService {
         } else if (WAIT_FOR_EMAIL_STATE.equals(userState)) {
             output = appUserService.setEmail(appUser, text);
         } else {
-            log.debug("Unknown user state: " + userState);
+            log.error("Unknown user state: " + userState);
             output = "Неизвестная ошибка! Введите /cancel и попробуйте снова!";
         }
 
