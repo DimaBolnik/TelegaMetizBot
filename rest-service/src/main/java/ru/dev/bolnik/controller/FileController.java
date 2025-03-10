@@ -35,15 +35,9 @@ public class FileController {
         response.setStatus(HttpServletResponse.SC_OK);
 
         BinaryContent binaryContent = doc.getBinaryContent();
-        try {
-            ServletOutputStream out = response.getOutputStream();
-            out.write(binaryContent.getFileAsArrayOfBytes());
-            out.close();
-        } catch (IOException e) {
-            log.error(e);
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-        }
+        sendingFiles(response, binaryContent);
     }
+
     @GetMapping("/get-photo")
     public void getPhoto(@RequestParam("id") String id, HttpServletResponse response) {
         //TODO для формирования badRequest добавить ControllerAdvice
@@ -57,6 +51,10 @@ public class FileController {
         response.setStatus(HttpServletResponse.SC_OK);
 
         BinaryContent binaryContent = photo.getBinaryContent();
+        sendingFiles(response, binaryContent);
+    }
+
+    private static void sendingFiles(HttpServletResponse response, BinaryContent binaryContent) {
         try {
             ServletOutputStream out = response.getOutputStream();
             out.write(binaryContent.getFileAsArrayOfBytes());

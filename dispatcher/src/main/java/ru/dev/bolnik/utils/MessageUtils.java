@@ -5,8 +5,12 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+
 @Component
 public class MessageUtils {
+    
     public SendMessage generateSendMessageWithText(Update update, String text) {
         Message message = update.getMessage();
         SendMessage sendMessage = new SendMessage();
@@ -14,4 +18,5 @@ public class MessageUtils {
         sendMessage.setText(text);
         return sendMessage;
     }
+
 }
